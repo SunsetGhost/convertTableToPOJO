@@ -1,6 +1,6 @@
-package com.sf.startup;
+package com.dj.startup;
 
-import com.sf.util.ConvertTableToDomainUtil;
+import com.dj.util.ConvertTableToDomainUtil;
 
 public class StartUp {
 	

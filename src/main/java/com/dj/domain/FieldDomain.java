@@ -1,6 +1,6 @@
-package com.sf.domain;
+package com.dj.domain;
 
-import com.sf.util.StringUtil;
+import com.dj.util.StringUtil;
 
 public class FieldDomain {
 	

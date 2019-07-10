@@ -1,11 +1,11 @@
-package com.sf.util;
+package com.dj.util;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.sf.domain.JavaType;
-import com.sf.domain.MySqlType;
-import com.sf.exception.MySqlTypeException;
+import com.dj.domain.JavaType;
+import com.dj.domain.MySqlType;
+import com.dj.exception.MySqlTypeException;
 
 public class MySqlAndJavaMatchUtil {
 	

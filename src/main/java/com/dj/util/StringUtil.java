@@ -1,4 +1,4 @@
-package com.sf.util;
+package com.dj.util;
 
 public class StringUtil {
 	

@@ -1,4 +1,4 @@
-package com.sf.domain;
+package com.dj.domain;
 
 public enum MySqlType {
 	VARCHAR("VARCHAR"),

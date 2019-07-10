@@ -1,4 +1,4 @@
-package com.sf.exception;
+package com.dj.exception;
 
 public class MySqlTypeException extends RuntimeException {
 

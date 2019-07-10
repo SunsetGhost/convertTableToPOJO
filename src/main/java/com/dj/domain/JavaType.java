@@ -1,4 +1,4 @@
-package com.sf.domain;
+package com.dj.domain;
 
 public enum JavaType {
 	STRING("String"),
