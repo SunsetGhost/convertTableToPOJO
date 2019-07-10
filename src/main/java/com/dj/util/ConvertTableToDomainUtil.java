@@ -1,4 +1,4 @@
-package com.sf.util;
+package com.dj.util;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.sf.domain.FieldDomain;
-import com.sf.domain.MySqlType;
+import com.dj.domain.FieldDomain;
+import com.dj.domain.MySqlType;
 
 public class ConvertTableToDomainUtil {
 	
