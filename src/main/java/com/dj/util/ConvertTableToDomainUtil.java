@@ -15,10 +15,15 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.dj.domain.FieldDomain;
 import com.dj.domain.MySqlType;
 
 public class ConvertTableToDomainUtil {
+	
+	private static Logger logger = LoggerFactory.getLogger(ConvertTableToDomainUtil.class);
 	
 	public static void convertTableToDomain(String inputFilePath, String outputFilePath) {
 		if(StringUtil.isNotEmpty(inputFilePath) && StringUtil.isNotEmpty(outputFilePath)) {
@@ -26,6 +31,8 @@ public class ConvertTableToDomainUtil {
 			File outputFile = new File(outputFilePath);
 			List<FieldDomain> list = readInputFile(inputFile);
 			writeOutputFile(outputFile, list);
+		} else {
+			logger.info("inputFilePath or outputFilePath can not be empty!");
 		}
 	}
 	
