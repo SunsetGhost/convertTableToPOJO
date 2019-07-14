@@ -1,0 +1,9 @@
+@Column(name = "RUNOOB_ID")
+private Integer runoobId; // ID
+
+@Column(name = "RUNOOB_TITLE")
+private String runoobTitle; // 标题
+
+@Column(name = "RUNOOB_AUTHOR")
+private String runoobAuthor; // 作者
+
