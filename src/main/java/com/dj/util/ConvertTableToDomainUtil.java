@@ -93,10 +93,11 @@ public class ConvertTableToDomainUtil {
 	
 	private static FieldDomain convert(String currentLine) {
 		FieldDomain fieldDomain = null;
-		if(StringUtil.isNotEmpty(standardLine(currentLine))) {
+		String standardCurLine = standardLine(currentLine);
+		if(StringUtil.isNotEmpty(standardCurLine)) {
 			fieldDomain = new FieldDomain();
-			setRemark(fieldDomain, currentLine);
-			String[] array = currentLine.split(" ");
+			setRemark(fieldDomain, standardCurLine);
+			String[] array = standardCurLine.split(" ");
 			setAnnotation(fieldDomain, array[0]);
 			setFieldType(fieldDomain, array[1]);
 			setFieldName(fieldDomain, array[0]);
@@ -142,25 +143,9 @@ public class ConvertTableToDomainUtil {
 	
 	private static String standardLine(String currentLine) {
 		if(StringUtil.isNotEmpty(currentLine)) {
-			return currentLine.trim().replaceAll("[\\t|\\s]+", " ");
+			return currentLine.trim().replaceAll("[\\t|\\s]+", " ").toUpperCase();
 		}
 		return null;
 	}
 	
-	public static void main(String[] args) {
-		String str = "`util_type` INT(2) NULL             DEFAULT NULL COMMENT '实用性航班类型:1主用 ，2备用',";
-		System.out.println(str = str.trim().replaceAll("[\\t|\\s]+", "&&&")); // 移除首尾空格
-		System.out.println(str = str.replaceAll("[\\t|\\s]+", "&&&"));
-//		String str1 = "send_belong_network_code";
-//		Pattern pattern = Pattern.compile("_\\w{1}");
-//		Matcher matcher = pattern.matcher(str1);
-//		while(matcher.find()) {
-//			String group = matcher.group();
-//			str1 = str1.replace(group, group.substring(1).toUpperCase());
-////			System.out.println(matcher.group());
-//		}
-//		System.out.println(JavaType.BIG_DECIMAL);
-//		convert(str);
-	}
-
 }
