@@ -15,9 +15,8 @@ public class StartUp {
 
 
 inputFile.txt:
-
-`runoob_id` INT UNSIGNED AUTO_INCREMENT comment 'id',\r\n
-`runoob_title` VARCHAR(100) NOT NULL comment '标题',\r\n
+`runoob_id` INT UNSIGNED AUTO_INCREMENT comment 'id',
+`runoob_title` VARCHAR(100) NOT NULL comment '标题',
 `runoob_author` VARCHAR(40) NOT NULL comment '作者',
 
 outputFile.txt:
