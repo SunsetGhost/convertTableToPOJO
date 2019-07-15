@@ -53,7 +53,9 @@ public class FieldDomain {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(this.annotation).append(CHANGE_LINE);
+		if(StringUtil.isNotEmpty(this.annotation)) {
+			sb.append(this.annotation).append(CHANGE_LINE);
+		}
 		sb.append("private").append(SPACE).append(this.fieldType).append(SPACE).append(this.fieldName).append(SEMICOLON);
 		if(StringUtil.isNotEmpty(this.remark)) {
 			sb.append(SPACE).append("//").append(SPACE).append(this.remark);

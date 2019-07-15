@@ -25,6 +25,10 @@ public class ConvertTableToDomainUtil {
 	
 	private static Logger logger = LoggerFactory.getLogger(ConvertTableToDomainUtil.class);
 	
+	private static boolean isOutputAnnotation = false;
+	
+	private static boolean isOutputRemark = false;
+	
 	public static void convertTableToDomain(String inputFilePath, String outputFilePath) {
 		if(StringUtil.isNotEmpty(inputFilePath) && StringUtil.isNotEmpty(outputFilePath)) {
 			File inputFile = new File(inputFilePath);
@@ -96,9 +100,13 @@ public class ConvertTableToDomainUtil {
 		String standardCurLine = standardLine(currentLine);
 		if(StringUtil.isNotEmpty(standardCurLine)) {
 			fieldDomain = new FieldDomain();
-			setRemark(fieldDomain, standardCurLine);
+			if(ConvertTableToDomainUtil.isOutputRemark) {
+				setRemark(fieldDomain, standardCurLine);
+			}
 			String[] array = standardCurLine.split(" ");
-			setAnnotation(fieldDomain, array[0]);
+			if(ConvertTableToDomainUtil.isOutputRemark) {
+				setAnnotation(fieldDomain, array[0]);
+			}
 			setFieldType(fieldDomain, array[1]);
 			setFieldName(fieldDomain, array[0]);
 		}
@@ -146,6 +154,22 @@ public class ConvertTableToDomainUtil {
 			return currentLine.trim().replaceAll("[\\t|\\s]+", " ").toUpperCase();
 		}
 		return null;
+	}
+
+	public static boolean isOutputAnnotation() {
+		return isOutputAnnotation;
+	}
+
+	public static void setOutputAnnotation(boolean isOutputAnnotation) {
+		ConvertTableToDomainUtil.isOutputAnnotation = isOutputAnnotation;
+	}
+
+	public static boolean isOutputRemark() {
+		return isOutputRemark;
+	}
+
+	public static void setOutputRemark(boolean isOutputRemark) {
+		ConvertTableToDomainUtil.isOutputRemark = isOutputRemark;
 	}
 	
 }
