@@ -104,7 +104,7 @@ public class ConvertTableToDomainUtil {
 				setRemark(fieldDomain, standardCurLine);
 			}
 			String[] array = standardCurLine.split(" ");
-			if(ConvertTableToDomainUtil.isOutputRemark) {
+			if(ConvertTableToDomainUtil.isOutputAnnotation) {
 				setAnnotation(fieldDomain, array[0]);
 			}
 			setFieldType(fieldDomain, array[1]);
