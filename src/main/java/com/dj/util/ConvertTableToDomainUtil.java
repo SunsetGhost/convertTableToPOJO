@@ -27,7 +27,7 @@ public class ConvertTableToDomainUtil {
 	
 	private static boolean isOutputAnnotation = false;
 	
-	private static boolean isOutputRemark = false;
+	private static boolean isOutputRemark = true;
 	
 	public static void convertTableToDomain(String inputFilePath, String outputFilePath) {
 		if(StringUtil.isNotEmpty(inputFilePath) && StringUtil.isNotEmpty(outputFilePath)) {
