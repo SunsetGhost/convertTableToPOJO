@@ -20,6 +20,7 @@ inputFile.txt:
 `runoob_author` VARCHAR(40) NOT NULL comment '作者',
 
 outputFile.txt:
+
 private Integer runoobId; // ID
 
 private String runoobTitle; // 标题
