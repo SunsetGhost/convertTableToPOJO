@@ -2,6 +2,7 @@
 Convert mysql to java POJO.
 
 You can use like this:
+
 public class StartUp {
 	
 	public static void main(String[] args) {
