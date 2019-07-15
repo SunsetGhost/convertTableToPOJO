@@ -2,7 +2,6 @@
 Convert mysql to java POJO.
 
 You can use like this:
-
 public class StartUp {
 	
 	public static void main(String[] args) {
@@ -14,13 +13,11 @@ public class StartUp {
 }
 
 inputFile.txt:
-
 `runoob_id` INT UNSIGNED AUTO_INCREMENT comment 'id',
 `runoob_title` VARCHAR(100) NOT NULL comment '标题',
 `runoob_author` VARCHAR(40) NOT NULL comment '作者',
 
 outputFile.txt:
-
 @Column(name = "RUNOOB_ID")
 private Integer runoobId; // ID
 
