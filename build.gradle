@@ -16,7 +16,10 @@ repositories {
 dependencies {
 	compile('org.slf4j:jcl-over-slf4j:1.7.25') { transitive = false }
 	compile('org.slf4j:log4j-over-slf4j:1.7.12') { transitive = false }
+	compile('org.slf4j:slf4j-api:1.7.25') { transitive = false }
 	compile('ch.qos.logback:logback-classic:1.2.3') { transitive = false }
+	compile('ch.qos.logback:logback-core:1.2.3') { transitive = false }
+	compile('com.google.code.gson:gson:2.3.1') { transitive = false }
 	compile('com.google.code.gson:gson:2.3.1') { transitive = false }
 	compile fileTree(dir: rootProject.projectDir.absolutePath + '/lib', include: '*.jar')
 }
