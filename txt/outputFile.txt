@@ -1,9 +1,342 @@
-@Column(name = "RUNOOB_ID")
-private Integer runoobId; // ID
+/**
+ * 主键ID
+ */
+@Column(name = "﻿ID")
+private Long ﻿id;
 
-@Column(name = "RUNOOB_TITLE")
-private String runoobTitle; // 标题
+/**
+ * 维度KEY(发货日期_网点CODE_集货班次_散货班次_计划散货班次日期)
+ */
+@Column(name = "KEY_MAIN")
+private String keyMain;
 
-@Column(name = "RUNOOB_AUTHOR")
-private String runoobAuthor; // 作者
+/**
+ * 需求ID
+ */
+@Column(name = "REQURIED_ID")
+private Long requriedId;
+
+/**
+ * 航班类型（1 国内,2 国际,3 港澳台）
+ */
+@Column(name = "FLIGHT_TYPE")
+private String flightType;
+
+/**
+ * 发货归属网点
+ */
+@Column(name = "SEND_BELONG_NETWORK_CODE")
+private String sendBelongNetworkCode;
+
+/**
+ * 计划发出班次
+ */
+@Column(name = "PLAN_SEND_BATCH")
+private String planSendBatch;
+
+/**
+ * 计划散货班次
+ */
+@Column(name = "PLAN_ARRIVE_BATCH")
+private String planArriveBatch;
+
+/**
+ * 计划发出班次日期
+ */
+@Column(name = "PLAN_SEND_BATCH_DT")
+private Date planSendBatchDt;
+
+/**
+ * 计划散货班次日期(含时间)
+ */
+@Column(name = "PLAN_ARRIVE_BATCH_DT")
+private Date planArriveBatchDt;
+
+/**
+ * 运力名称
+ */
+@Column(name = "CAPACITY_NAME")
+private String capacityName;
+
+/**
+ * 计划离场时间
+ */
+@Column(name = "LEFT_DATE")
+private Date leftDate;
+
+/**
+ * 离场日期
+ */
+@Column(name = "LEFT_TM")
+private Integer leftTm;
+
+/**
+ * 计划到达时间(Y-M-D H:M)
+ */
+@Column(name = "PLAN_ARRIVE_DT")
+private Date planArriveDt;
+
+/**
+ * 计划到场时间(Y-M-D H:M)
+ */
+@Column(name = "PLAN_ARRIVE_TM_DT")
+private Date planArriveTmDt;
+
+/**
+ * 计划到达时间
+ */
+@Column(name = "PLAN_ARRIVE_TM")
+private Integer planArriveTm;
+
+/**
+ * 计划发出时间
+ */
+@Column(name = "PLAN_SEND_DT")
+private Date planSendDt;
+
+/**
+ * 计划发出时间
+ */
+@Column(name = "PLAN_DEPART_TM")
+private Integer planDepartTm;
+
+/**
+ * 舱位ID
+ */
+@Column(name = "CABIN_ID")
+private Long cabinId;
+
+/**
+ * 舱位共用ID(待删除)
+ */
+@Column(name = "CABIN_COMMON_ID")
+private Long cabinCommonId;
+
+/**
+ * SPACE表主键ID
+ */
+@Column(name = "SPACE_ID")
+private Long spaceId;
+
+/**
+ * 货物类型( 1普货，2鲜活，3生鲜，4TA件)
+ */
+@Column(name = "CARGO_TYPE")
+private String cargoType;
+
+/**
+ * 参考TM_AIR_IMPORT_EXPORT_I18N_CONFIG中KEY为CARGO_TYPE配置
+ */
+@Column(name = "SETTLE_CARGO_TYPE")
+private String settleCargoType;
+
+/**
+ * 发货价格
+ */
+@Column(name = "SEND_PRICE")
+private Double sendPrice;
+
+/**
+ * 提货价格
+ */
+@Column(name = "GET_PRICE")
+private Double getPrice;
+
+/**
+ * 计算订舱量
+ */
+@Column(name = "CAL_SPACE_AMOUNT")
+private Integer calSpaceAmount;
+
+/**
+ * 调整订舱量
+ */
+@Column(name = "ADJUST_SPACE_AMOUNT")
+private Integer adjustSpaceAmount;
+
+/**
+ * 成本（计算订舱量 * （发货运价 + 提货运价））
+ */
+@Column(name = "SPACE_COST")
+private Double spaceCost;
+
+/**
+ * 供应商
+ */
+@Column(name = "SUPPLIER_ID")
+private Long supplierId;
+
+/**
+ * 供应商2
+ */
+@Column(name = "SUPPLIER_ID_2")
+private Long supplierId2;
+
+/**
+ * 供应商3
+ */
+@Column(name = "SUPPLIER_ID_3")
+private Long supplierId3;
+
+/**
+ * 供应商名称
+ */
+@Column(name = "SUPPLIER_NAME")
+private String supplierName;
+
+/**
+ * 供应商2
+ */
+@Column(name = "SUPPLIER_NAME_2")
+private String supplierName2;
+
+/**
+ * 供应商3
+ */
+@Column(name = "SUPPLIER_NAME_3")
+private String supplierName3;
+
+/**
+ * 订舱供应商
+ */
+@Column(name = "SPACE_SUPPLIER_CODE")
+private String spaceSupplierCode;
+
+/**
+ * 时效性航班类型（1 早航班,2 午航班,3 晚航班）
+ */
+@Column(name = "SCHEDULE_FLIGHT_TYPE")
+private Integer scheduleFlightType;
+
+/**
+ * 始发城市
+ */
+@Column(name = "DEPART_CITY_NAME")
+private String departCityName;
+
+/**
+ * 始发地机场代码
+ */
+@Column(name = "DEPART_THR_LETTER_CODE")
+private String departThrLetterCode;
+
+/**
+ * 目的地城市
+ */
+@Column(name = "ARRIVE_CITY_NAME")
+private String arriveCityName;
+
+/**
+ * 目的地机场代码
+ */
+@Column(name = "ARRIVE_THR_LETTER_CODE")
+private String arriveThrLetterCode;
+
+/**
+ * 始发城市代码
+ */
+@Column(name = "DEPART_CITY_CODE")
+private String departCityCode;
+
+/**
+ * 目的地城市代码
+ */
+@Column(name = "ARRIVE_CITY_CODE")
+private String arriveCityCode;
+
+/**
+ * 始发地区代码
+ */
+@Column(name = "DEPART_AREA_CODE")
+private String departAreaCode;
+
+/**
+ * 始发地区名称
+ */
+@Column(name = "DEPART_AREA_NAME")
+private String departAreaName;
+
+/**
+ * 目的地区代码
+ */
+@Column(name = "ARRIVE_AREA_CODE")
+private String arriveAreaCode;
+
+/**
+ * 目的地区名称
+ */
+@Column(name = "ARRIVE_AREA_NAME")
+private String arriveAreaName;
+
+/**
+ * 计划发出班次开始时间
+ */
+@Column(name = "PLAN_SEND_BATCH_BEGIN_TM")
+private Date planSendBatchBeginTm;
+
+/**
+ * 计划散货班次开始时间
+ */
+@Column(name = "PLAN_ARRIVE_BATCH_BEGIN_TM")
+private Date planArriveBatchBeginTm;
+
+/**
+ * 提货归属网点
+ */
+@Column(name = "GET_BELONG_NETWORK_CODE")
+private String getBelongNetworkCode;
+
+/**
+ * 本期可获取舱位
+ */
+@Column(name = "AVAIABLE_CABIN_SPACE")
+private Integer avaiableCabinSpace;
+
+/**
+ * 舱位KEY
+ */
+@Column(name = "KEY_SPACE")
+private String keySpace;
+
+/**
+ * 实用性航班类型:1主用 ，2备用
+ */
+@Column(name = "UTIL_TYPE")
+private Integer utilType;
+
+/**
+ * 机型
+ */
+@Column(name = "PLANE_TYPE")
+private String planeType;
+
+/**
+ * 主运单号
+ */
+@Column(name = "MAIN_NUMBER")
+private String mainNumber;
+
+/**
+ * 交易类型 2 一票一议 空值为固定议价
+ */
+@Column(name = "TRANSACTION_TYPE")
+private Integer transactionType;
+
+/**
+ * 来源 1：系统2：人工
+ */
+@Column(name = "ORIGIN")
+private String origin;
+
+/**
+ * 计算唯一ID
+ */
+@Column(name = "UNIQUE_ID")
+private Long uniqueId;
+
+/**
+ * 创建时间
+ */
+@Column(name = "CREATED_TM")
+private Date createdTm;
 

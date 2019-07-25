@@ -20,16 +20,19 @@ import org.slf4j.LoggerFactory;
 
 import com.dj.domain.FieldDomain;
 import com.dj.domain.MySqlType;
+import com.dj.domain.RemarkLocation;
 
 public class ConvertTableToDomainUtil {
 	
 	private static Logger logger = LoggerFactory.getLogger(ConvertTableToDomainUtil.class);
 	
-	private static boolean isOutputAnnotation = false;
+	private boolean isOutputAnnotation = false;
 	
-	private static boolean isOutputRemark = true;
+	private boolean isOutputRemark = true;
 	
-	public static void convertTableToDomain(String inputFilePath, String outputFilePath) {
+	private RemarkLocation remarkLocation = RemarkLocation.TOP_OF_FIELD;
+	
+	public void convertTableToDomain(String inputFilePath, String outputFilePath) {
 		if(StringUtil.isNotEmpty(inputFilePath) && StringUtil.isNotEmpty(outputFilePath)) {
 			File inputFile = new File(inputFilePath);
 			File outputFile = new File(outputFilePath);
@@ -40,7 +43,7 @@ public class ConvertTableToDomainUtil {
 		}
 	}
 	
-	private static void writeOutputFile(File outputFile, List<FieldDomain> list) {
+	private void writeOutputFile(File outputFile, List<FieldDomain> list) {
 		try {
 			if(outputFile.exists()) {
 				outputFile.delete();
@@ -53,7 +56,7 @@ public class ConvertTableToDomainUtil {
 			BufferedWriter outputFileWriter = new BufferedWriter(writer);
 			if(list != null && list.size() > 0) {
 				for(FieldDomain domain : list) {
-					outputFileWriter.write(domain.toString());
+					outputFileWriter.write(domain.getStringBy(getRemarkLocation()));
 				}
 			}
 			if(outputFileWriter != null) {
@@ -64,7 +67,7 @@ public class ConvertTableToDomainUtil {
 		}
 	}
 	
-	private static List<FieldDomain> readInputFile(File inputFile) {
+	private List<FieldDomain> readInputFile(File inputFile) {
 		List<FieldDomain> list = new ArrayList<>();
 		BufferedReader bufferedReader = null;
 		InputStreamReader fileReader = null;
@@ -95,16 +98,16 @@ public class ConvertTableToDomainUtil {
 		return list;
 	}
 	
-	private static FieldDomain convert(String currentLine) {
+	private FieldDomain convert(String currentLine) {
 		FieldDomain fieldDomain = null;
 		String standardCurLine = standardLine(currentLine);
 		if(StringUtil.isNotEmpty(standardCurLine)) {
 			fieldDomain = new FieldDomain();
-			if(ConvertTableToDomainUtil.isOutputRemark) {
+			if(this.isOutputRemark) {
 				setRemark(fieldDomain, standardCurLine);
 			}
 			String[] array = standardCurLine.split(" ");
-			if(ConvertTableToDomainUtil.isOutputAnnotation) {
+			if(this.isOutputAnnotation) {
 				setAnnotation(fieldDomain, array[0]);
 			}
 			setFieldType(fieldDomain, array[1]);
@@ -113,7 +116,7 @@ public class ConvertTableToDomainUtil {
 		return fieldDomain;
 	}
 	
-	private static void setRemark(FieldDomain fieldDomain, String currentLine) {
+	private void setRemark(FieldDomain fieldDomain, String currentLine) {
 		if(currentLine.contains(" COMMENT ")) {
 			String remark = currentLine.substring(currentLine.indexOf(" COMMENT "));
 			remark = remark.replace(" COMMENT ", "");
@@ -123,7 +126,7 @@ public class ConvertTableToDomainUtil {
 		}
 	}
 	
-	private static void setFieldType(FieldDomain fieldDomain, String str) {
+	private void setFieldType(FieldDomain fieldDomain, String str) {
 		if(str.contains("(")) {
 			str = str.toUpperCase().substring(0, str.indexOf("("));
 		} else {
@@ -133,7 +136,7 @@ public class ConvertTableToDomainUtil {
 		fieldDomain.setFieldType(mySqlAndJavaMatchUtil.getJavaTypeBy(MySqlType.valueOf(str)));
 	}
 	
-	private static void setFieldName(FieldDomain fieldDomain, String str) {
+	private void setFieldName(FieldDomain fieldDomain, String str) {
 		str = standardLine(str).replace("`", "").toLowerCase();
 		Pattern pattern = Pattern.compile("_\\w{1}");
 		Matcher matcher = pattern.matcher(str);
@@ -144,7 +147,7 @@ public class ConvertTableToDomainUtil {
 		fieldDomain.setFieldName(str);
 	}
 	
-	private static void setAnnotation(FieldDomain fieldDomain, String str) {
+	private void setAnnotation(FieldDomain fieldDomain, String str) {
 		str = standardLine(str).replace("`", "").toUpperCase();
 		fieldDomain.setAnnotation("@Column(name = \"" + str + "\")");
 	}
@@ -156,20 +159,31 @@ public class ConvertTableToDomainUtil {
 		return null;
 	}
 
-	public static boolean isOutputAnnotation() {
+	public boolean isOutputAnnotation() {
 		return isOutputAnnotation;
 	}
 
-	public static void setOutputAnnotation(boolean isOutputAnnotation) {
-		ConvertTableToDomainUtil.isOutputAnnotation = isOutputAnnotation;
+	public ConvertTableToDomainUtil setOutputAnnotation(boolean isOutputAnnotation) {
+		this.isOutputAnnotation = isOutputAnnotation;
+		return this;
 	}
 
-	public static boolean isOutputRemark() {
+	public boolean isOutputRemark() {
 		return isOutputRemark;
 	}
 
-	public static void setOutputRemark(boolean isOutputRemark) {
-		ConvertTableToDomainUtil.isOutputRemark = isOutputRemark;
+	public ConvertTableToDomainUtil setOutputRemark(boolean isOutputRemark) {
+		this.isOutputRemark = isOutputRemark;
+		return this;
+	}
+
+	public RemarkLocation getRemarkLocation() {
+		return remarkLocation;
+	}
+
+	public ConvertTableToDomainUtil setRemarkLocation(RemarkLocation remarkLocation) {
+		this.remarkLocation = remarkLocation;
+		return this;
 	}
 	
 }

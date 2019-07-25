@@ -50,20 +50,32 @@ public class FieldDomain {
 		this.remark = remark;
 	}
 
-	@Override
-	public String toString() {
+	public String getStringBy(RemarkLocation remarkLocation) {
 		StringBuilder sb = new StringBuilder();
-		if(StringUtil.isNotEmpty(this.annotation)) {
-			sb.append(this.annotation).append(CHANGE_LINE);
+		if(RemarkLocation.RIGHT_OF_FIELD.equals(remarkLocation)) {
+			if(StringUtil.isNotEmpty(this.annotation)) {
+				sb.append(this.annotation).append(CHANGE_LINE);
+			}
+			sb.append("private").append(SPACE).append(this.fieldType).append(SPACE).append(this.fieldName).append(SEMICOLON);
+			if(StringUtil.isNotEmpty(this.remark)) {
+				sb.append(SPACE).append("//").append(SPACE).append(this.remark);
+			}
+			sb.append(CHANGE_LINE).append(CHANGE_LINE);
+			return sb.toString();
+		} else if(RemarkLocation.TOP_OF_FIELD.equals(remarkLocation)) {
+			if(StringUtil.isNotEmpty(this.remark)) {
+				sb.append("/**").append(CHANGE_LINE)
+				  .append(SPACE).append("*").append(SPACE).append(this.remark).append(CHANGE_LINE)
+				  .append(SPACE).append("*/").append(CHANGE_LINE);
+			}
+			if(StringUtil.isNotEmpty(this.annotation)) {
+				sb.append(this.annotation).append(CHANGE_LINE);
+			}
+			sb.append("private").append(SPACE).append(this.fieldType).append(SPACE).append(this.fieldName).append(SEMICOLON);
+			sb.append(CHANGE_LINE).append(CHANGE_LINE);
+			return sb.toString();
 		}
-		sb.append("private").append(SPACE).append(this.fieldType).append(SPACE).append(this.fieldName).append(SEMICOLON);
-		if(StringUtil.isNotEmpty(this.remark)) {
-			sb.append(SPACE).append("//").append(SPACE).append(this.remark);
-		}
-		sb.append(CHANGE_LINE).append(CHANGE_LINE);
-		return sb.toString();
+		return null;
 	}
-	
-	
 	
 }
