@@ -32,6 +32,16 @@ public class ConvertTableToDomainUtil {
 	
 	private RemarkLocation remarkLocation = RemarkLocation.TOP_OF_FIELD;
 	
+	private MySqlAndJavaMatchUtil mySqlAndJavaMatchUtil;
+	
+	public ConvertTableToDomainUtil() {
+		this.mySqlAndJavaMatchUtil = new MySqlAndJavaMatchUtil();
+	}
+	
+	public ConvertTableToDomainUtil(MySqlAndJavaMatchUtil mySqlAndJavaMatchUtil) {
+		this.mySqlAndJavaMatchUtil = mySqlAndJavaMatchUtil;
+	}
+	
 	public void convertTableToDomain(String inputFilePath, String outputFilePath) {
 		if(StringUtil.isNotEmpty(inputFilePath) && StringUtil.isNotEmpty(outputFilePath)) {
 			File inputFile = new File(inputFilePath);
@@ -132,8 +142,7 @@ public class ConvertTableToDomainUtil {
 		} else {
 			str = str.toUpperCase();
 		}
-		MySqlAndJavaMatchUtil mySqlAndJavaMatchUtil = new MySqlAndJavaMatchUtil();
-		fieldDomain.setFieldType(mySqlAndJavaMatchUtil.getJavaTypeBy(MySqlType.valueOf(str)));
+		fieldDomain.setFieldType(this.mySqlAndJavaMatchUtil.getJavaTypeBy(MySqlType.valueOf(str)));
 	}
 	
 	private void setFieldName(FieldDomain fieldDomain, String str) {
@@ -184,6 +193,10 @@ public class ConvertTableToDomainUtil {
 	public ConvertTableToDomainUtil setRemarkLocation(RemarkLocation remarkLocation) {
 		this.remarkLocation = remarkLocation;
 		return this;
+	}
+
+	public MySqlAndJavaMatchUtil getMySqlAndJavaMatchUtil() {
+		return mySqlAndJavaMatchUtil;
 	}
 	
 }
